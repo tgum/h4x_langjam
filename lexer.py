@@ -31,6 +31,9 @@ class TokenTypes(Enum):
 	OPEN_PAREN = 4
 	CLOSE_PAREN = 5
 
+	COMMENT = 6
+	MULTILINE_COMMENT = 7
+
 currently_building = ""
 build_type = TokenTypes.UNDEFINED
 
@@ -42,6 +45,9 @@ token types:
 012.41 NUMBER
 "qsdfj" STRING
 hello_10 IDENTIFIER
+
+~ hello this is comment COMMENT
+{hello this is comment} MULTILINE_COMMENT
 """
 
 def tokenize(prog):
@@ -69,8 +75,12 @@ def tokenize(prog):
 			elif char in string.digits:
 				currently_building += char
 				build_type = TokenTypes.NUMBER
-			elif char == " ":
+			elif char in string.whitespace:
 				pass
+			elif char == "~":
+				build_type = TokenTypes.COMMENT
+			elif char == "{":
+				build_type = TokenTypes.MULTILINE_COMMENT
 			else:
 				currently_building += char
 				build_type = TokenTypes.IDENTIFIER
@@ -96,6 +106,14 @@ def tokenize(prog):
 				nextchar(-1)
 			else:
 				currently_building += char
+		elif build_type == TokenTypes.COMMENT:
+			if char == "\n":
+				build_type = TokenTypes.UNDEFINED
+				currently_building = ""
+		elif build_type == TokenTypes.MULTILINE_COMMENT:
+			if char == "}":
+				build_type = TokenTypes.UNDEFINED
+				currently_building = ""
 
 		nextchar()
 	if build_type != TokenTypes.UNDEFINED:

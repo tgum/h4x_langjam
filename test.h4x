@@ -1,1 +1,10 @@
-(print "hello" 123.5 #" (◕‿◕) "ᐊ")
+~ (print "hello" 123.5 #" (◕‿◕) "ᐊ")
+{(defun fibonacci (n &optional (a 0) (b 1) (acc ()))
+  (if (zerop n)
+      (nreverse acc)
+      (fibonacci (1- n) b (+ a b) (cons a acc))))
+
+(fibonacci 5)}
+
+(import math)
+(* 2 (math:cos 0) (+ 4 6))

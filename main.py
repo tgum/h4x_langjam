@@ -1,7 +1,11 @@
 import lexer
+import parser
+from pprint import pprint
 
 with open("test.h4x", "r") as f:
 	program = f.read()
 lexed = lexer.tokenize(program)
-print(program)
-print(lexed)
+parsed = parser.parse(lexed)
+#print(program)
+#print(lexed)
+pprint(parsed)
