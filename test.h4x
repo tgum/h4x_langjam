@@ -3,8 +3,10 @@
   (if (zerop n)
       (nreverse acc)
       (fibonacci (1- n) b (+ a b) (cons a acc))))
-
-(fibonacci 5)}
-
+(fibonacci 5)
 (import math)
-(* 2 (math:cos 0) (+ 4 6))
+(* 2 (math:cos 0) (+ 4 6))}
+
+(print "hey")
+(print (- 1 1))
+(print "hello")

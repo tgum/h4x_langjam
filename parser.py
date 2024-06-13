@@ -1,8 +1,6 @@
 import lexer
 from pprint import pprint
 
-parsed = []
-
 def parse(tokens, depth=0):
 	tree = []
 	i = 0

@@ -1,11 +1,15 @@
+from pprint import pprint
+
 import lexer
 import parser
-from pprint import pprint
+import runner
 
 with open("test.h4x", "r") as f:
 	program = f.read()
 lexed = lexer.tokenize(program)
 parsed = parser.parse(lexed)
+evaled = runner.eval(parsed)
 #print(program)
 #print(lexed)
-pprint(parsed)
+#pprint(parsed)
+print(evaled)
