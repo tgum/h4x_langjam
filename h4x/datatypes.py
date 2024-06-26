@@ -20,14 +20,34 @@ class Number(Value):
 	def __init__(self, value):
 		self.type = "NUMBER"
 		self.value = int(value)
-class String(Value):
-	def __init__(self, value):
-		self.type = "STRING"
-		self.value = value
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"
 		self.value = value
+
+class H4xList(Value):
+	def __init__(self, value):
+		self.type = "LIST"
+		self.value = value
+
+	def len(self):
+		return len(self.value)
+	def index(self, i):
+		return self.value[i]
+	def push(self, value):
+		result = self.value[:]
+		result.append(value)
+		return H4xList(result)
+class String(H4xList):
+	def __init__(self, value):
+		self.type = "STRING"
+		self.value = value
+
+	def index(self, i):
+		return String(self.value[i])
+	def push(self, value):
+		result = self.value + str(value.value) # TEMPORARY STRINGIFICATION
+		return String(result)
 
 class Exec(BasicType):
 	def __init__(self):
