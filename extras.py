@@ -7,4 +7,4 @@ def func_zoob(args, scopes):
 	print("zoob")
 	return h4x.datatypes.String("zoob")
 
-exports["zoob"] = h4x.datatypes.PyExec(func_zoob, 0)
+exports["extras:zoob"] = h4x.datatypes.PyExec(func_zoob, 0)

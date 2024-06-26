@@ -1,6 +1,8 @@
 (print "importing:")
 (import extras)
 (extras:zoob)
+(import tosty)
+(tosty)
 (print "")
 
 
