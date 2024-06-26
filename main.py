@@ -1,15 +1,15 @@
 from pprint import pprint
 
-import lexer
-import parser
-import runner
+import h4x
+
+scope_stack = []
+scope_stack.append({})
+
+h4x.import_module(scope_stack[0], "stdlib")
 
 with open("test.h4x", "r") as f:
 	program = f.read()
-lexed = lexer.tokenize(program)
-parsed = parser.parse(lexed)
-evaled = runner.eval(parsed)
-#print(program)
-#print(lexed)
-#pprint(parsed)
+lexed = h4x.tokenize(program)
+parsed = h4x.parse(lexed)
+evaled = h4x.eval(parsed, scope_stack)
 print(evaled)
