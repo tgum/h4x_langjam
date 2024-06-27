@@ -17,7 +17,7 @@ def func_do(args, scopes):
 	scopes.pop()
 	return result
 def func_import(args, scopes):
-	h4x.import_module(scopes[0], args[0].data, args[0].data + ":")
+	h4x.import_module(scopes[-1], args[0].data, args[0].data + ":")
 	return h4x.datatypes.String(args[0].data)
 def func_fn(args, scopes):
 	arg_names = []
