@@ -12,4 +12,4 @@ class TokenTypes(Enum):
 	COMMENT = 6
 	MULTILINE_COMMENT = 7
 
-Token = namedtuple("Token", "type data location")
+Token = namedtuple("Token", "type data index")

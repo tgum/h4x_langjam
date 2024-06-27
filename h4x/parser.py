@@ -1,5 +1,7 @@
-from . import tokens
 from pprint import pprint
+
+from . import error
+from . import tokens
 
 def parse(tokens_list, depth=0):
 	tree = []
@@ -20,6 +22,8 @@ def get_matching(start, tokens_list):
 	index = start
 	while depth >= 0:
 		index += 1
+		if index > len(tokens_list) - 1:
+			error.parser_error("Unmatched parenthesis", tokens_list[start])
 		token = tokens_list[index]
 		if token.type == tokens.TokenTypes.OPEN_PAREN:
 			depth += 1

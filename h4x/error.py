@@ -15,11 +15,24 @@ def get_line(index, string):
 def token_error(message, index):
 	line_num, line_index = get_line(index, h4x.program)
 	line = h4x.program.split('\n')[line_num]
-	print(f"There has been an error during parsing")
+	print(f"There has been an error during tokenization")
+	print(message)
 	print(f"at line {line_num+1} character {index - line_index}")
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
-	print(message)
+	sys.exit()
+
+def parser_error(message, start):
+	index = start.index
+	line_num, line_index = get_line(index, h4x.program)
+	line = h4x.program.split('\n')[line_num]
+
+
+	print(f"There has been an error during parsing")
+	print(f"{message}")
+	print(f"at line {line_num} character {index - line_index}")
+	print(f"{line}")
+	print(f"{'^'.rjust(index - line_index)}")
 	sys.exit()
 	raise Exception(message)
 
