@@ -68,6 +68,9 @@ def tokenize(prog):
 			elif char in string.digits:
 				currently_building += char
 				build_type = tokens.TokenTypes.NUMBER
+			elif char == "-" and program[index+1] in string.digits + ".":
+				currently_building += char
+				build_type = tokens.TokenTypes.NUMBER
 			elif char in string.whitespace:
 				pass
 			elif char == "~":
@@ -83,7 +86,7 @@ def tokenize(prog):
 			else:
 				currently_building += char
 		elif build_type == tokens.TokenTypes.NUMBER:
-			if char in string.digits or char == ".":
+			if char in string.digits + ".":
 				currently_building += char
 			elif char in delimiters:
 				make_token()

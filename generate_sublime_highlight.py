@@ -1,6 +1,11 @@
 import h4x.stdlib
 
-functions = "|".join(h4x.stdlib.exports.keys())
+functions_list = list(reversed(sorted(h4x.stdlib.exports.keys(), key=len)))
+for i, func in enumerate(functions_list):
+  print(func)
+  if func in list("+*"):
+    functions_list[i] = "\\" + func
+functions = "|".join(functions_list)
 
 syntax = f"""
 %YAML 1.2
@@ -23,7 +28,7 @@ contexts:
       scope: punctuation.definition.comment.h4x
       push: line_comment
 
-    - match: '\\b({functions})\\b'
+    - match: '({functions})'
       scope: keyword.control.h4x
 
     - match: '\\b(-)?[0-9.]+\\b'

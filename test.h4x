@@ -26,6 +26,13 @@
 )
 (print "")
 
+(print (int (/ 5.7 12.9)))
+
+(print "for loop:")
+(for i (10 1 -2)
+  (print i)
+)
+(print "")
 
 (print "repeat and scope:")
 (define b 0)
@@ -48,7 +55,7 @@
 (print "")
 
 
-(print "fucntions: ")
+(print "functions: ")
 (define function 
   (fn (a b)
     (print (+ a b))

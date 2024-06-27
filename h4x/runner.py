@@ -56,7 +56,10 @@ def eval(expr, scopes):
 		evaled = datatypes.String(expr.data)
 
 	elif expr.type == tokens.TokenTypes.NUMBER:
-		evaled = datatypes.Number(expr.data)
+		if "." in expr.data:
+			evaled = datatypes.Float(expr.data)
+		else:
+			evaled = datatypes.Number(expr.data)
 
 	elif expr.type == tokens.TokenTypes.IDENTIFIER:
 		for scope in reversed(scopes):

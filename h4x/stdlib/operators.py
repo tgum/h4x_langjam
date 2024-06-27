@@ -4,15 +4,20 @@ import h4x
 
 exports = {}
 
+def func_float(args, scopes):
+	return h4x.datatypes.Float(args[0].value)
+def func_int(args, scopes):
+	return h4x.datatypes.Number(args[0].value)
+
 # //---BASIC MATH---\\ #
 def func_add(args, scopes):
-	return h4x.datatypes.Number(args[0].value + args[1].value)
+	return h4x.datatypes.Float(args[0].value + args[1].value)
 def func_sub(args, scopes):
-	return h4x.datatypes.Number(args[0].value - args[1].value)
+	return h4x.datatypes.Float(args[0].value - args[1].value)
 def func_mul(args, scopes):
-	return h4x.datatypes.Number(args[0].value * args[1].value)
+	return h4x.datatypes.Float(args[0].value * args[1].value)
 def func_div(args, scopes):
-	return h4x.datatypes.Number(args[0].value / args[1].value)
+	return h4x.datatypes.Float(args[0].value / args[1].value)
 
 
 # //---COMARITION---\\ #
@@ -37,6 +42,9 @@ def func_and(args, scopes):
 def func_or(args, scopes):
 	return h4x.datatypes.Bool(args[0].value or args[1].value)
 
+
+exports["int"] =   h4x.datatypes.PyExec(func_int, 1)
+exports["float"] = h4x.datatypes.PyExec(func_float, 1)
 
 exports["+"] =   h4x.datatypes.PyExec(func_add, 2)
 exports["-"] =   h4x.datatypes.PyExec(func_sub, 2)

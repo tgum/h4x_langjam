@@ -25,8 +25,12 @@ class Null(Value):
 		return "Null"
 class Number(Value):
 	def __init__(self, value):
-		self.type = "NUMBER"
+		self.type = "INTEGER"
 		self.value = int(value)
+class Float(Value):
+	def __init__(self, value):
+		self.type = "FLOAT"
+		self.value = float(value)
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"

@@ -35,6 +35,54 @@ def func_if(args, scopes):
 
 
 # //---LOOPS---\\ #
+
+"""syntax
+not yet (for var (start end increment) body)
+not yet (for var (start end) body)
+(for var (amount) body)
+"""
+def func_for(args, scopes):
+	if not len(args) >= 3:
+		h4x.error.runtime(f"for needs at least 3 arguments, syntax: (for var (amount) body), instead it got {len(args)}")
+	if not args[0].type == h4x.tokens.TokenTypes.IDENTIFIER:
+		h4x.error.runtime(f"The first argument to for needs to be an identifier, instead it got {args[0].type}")
+
+	varname = args[0].data
+	loop = args[1]
+	if type(loop) != list:
+		h4x.error.runtime(f"The second argument to for should be in parenthesis, syntax (for var (amount) body), instead it got {loop}")
+	if not (len(loop) >= 1 and len(loop) <= 3):
+		h4x.error.runtime(f"The second argument to for should have 1-3 elements in it, instead it got {len(loop)}")
+	for i, elt in enumerate(loop):
+		loop[i] = h4x.eval(elt, scopes)
+	body = args[2:]
+	scopes.append({})
+	scopes[-1]["*trace"] = h4x.make_trace("for")
+	result = h4x.datatypes.Null()
+
+	start = loop[0] if len(loop) >= 2 else h4x.datatypes.Number(0)
+	end = (loop[1].value if len(loop) >= 2 else loop[0].value)
+	increment = loop[2].value if len(loop) == 3 else 1
+
+	print(start, end, increment)
+
+	scopes[-1][varname] = start
+	
+	while True:
+		if increment > 0:
+			if scopes[-1][varname].value >= end:
+				break
+		else:
+			if scopes[-1][varname].value <= end:
+				break
+			pass
+		h4x.eval(body, scopes)
+		scopes[-1][varname].value += increment
+
+	scopes.pop()
+	return result
+
+
 """syntax
 (repeat amount body)
 """
@@ -74,5 +122,6 @@ def func_while(args, scopes):
 
 
 exports["if"] =     h4x.datatypes.SpecialExec(func_if)
+exports["for"] = h4x.datatypes.SpecialExec(func_for)
 exports["repeat"] = h4x.datatypes.SpecialExec(func_repeat)
 exports["while"] =  h4x.datatypes.SpecialExec(func_while)
