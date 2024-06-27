@@ -2,11 +2,13 @@ from pprint import pprint
 import string
 
 from . import tokens
+from . import error
 
 tokens_list = []
 index = 0
 program = ""
 
+delimiters = [" ", ")", "(", "\n"]
 
 def currchar():
 	return program[index]
@@ -18,14 +20,13 @@ def nextchar(amt=1):
 
 def make_token():
 	global build_type, currently_building, tokens_list
-	tokens_list.append(tokens.Token(build_type, currently_building))
+	tokens_list.append(tokens.Token(build_type, currently_building, index))
 	build_type = tokens.TokenTypes.UNDEFINED
 	currently_building = ""
 
 
 currently_building = ""
 build_type = tokens.TokenTypes.UNDEFINED
-
 
 """
 token types:
@@ -81,16 +82,14 @@ def tokenize(prog):
 		elif build_type == tokens.TokenTypes.NUMBER:
 			if char in string.digits or char == ".":
 				currently_building += char
-			elif True:
+			elif char in delimiters:
 				make_token()
 				nextchar(-1)
 			else:
 				currently_building += char
-				raise Exception(f"t3re 1s s0m371n9 b4d w17h ur numb3r. {currently_building} h4s {char}. n0t g00d")
+				error.token_error(f"There is something bad with this number. {currently_building} shouldn't have {char}.", index)
 		elif build_type == tokens.TokenTypes.IDENTIFIER:
-			if char in [" ", "\n"]:
-				make_token()
-			elif char == ")":
+			if char in delimiters:
 				make_token()
 				nextchar(-1)
 			else:
@@ -105,6 +104,6 @@ def tokenize(prog):
 				currently_building = ""
 
 		nextchar()
-	if build_type != tokens.TokenTypes.UNDEFINED:
-		raise Exception(f"unf1n1s3d token. {currently_building} should be a {build_type} but it wasnt finished")
+	if build_type not in [tokens.TokenTypes.UNDEFINED, tokens.TokenTypes.COMMENT]:
+		error.token_error(f"Unfinished token: {currently_building} should be a {build_type} but it wasnt finished", index)
 	return tokens_list

@@ -2,6 +2,7 @@ __all__ = ["tokens", "lexer", "parser", "datatypes", "runner"]
 
 import importlib
 
+from . import error
 from . import tokens
 from . import lexer
 from . import parser
@@ -9,6 +10,8 @@ from . import datatypes
 from . import runner
 
 #runner.DEBUG = True
+
+program = ""
 
 tokenize = lexer.tokenize
 tokens_to_tree = parser.parse
@@ -31,7 +34,10 @@ def import_module(scope, name, prefix=""):
 def create_scopes():
 	return [{}]
 
-def parse(program):
+def parse(prog):
+	global program
+	program = prog
+
 	tokens = tokenize(program)
 	return tokens_to_tree(tokens)
 

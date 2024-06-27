@@ -1,5 +1,6 @@
 import pprint
 
+import h4x
 from . import datatypes
 from . import tokens
 

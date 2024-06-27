@@ -2,6 +2,7 @@
 (import extras)
 (extras:zoob)
 (import tosty)
+(print 5)
 (tosty)
 (print "")
 (define list (#l 1 (+ 1 1) 3))
@@ -104,3 +105,4 @@
 (if false
   (print "true")
 )
+~ hello
