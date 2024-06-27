@@ -10,17 +10,23 @@ def func_if(args, scopes):
 		condition = h4x.eval(args[0], scopes)
 		if isinstance(condition, h4x.datatypes.Bool):
 			if condition.value:
+				scopes.append({})
+				scopes[-1]["*trace"] = h4x.make_trace("if true")
 				body_true = args[1]
 				result = h4x.eval(body_true, scopes)
+				scopes.pop()
 				return result
 			elif len(args) > 2:
+				scopes.append({})
+				scopes[-1]["*trace"] = h4x.make_trace("if true")
 				body_false = args[2]
 				result = h4x.eval(body_false, scopes)
+				scopes.pop()
 				return result
 			else:
 				return h4x.datatypes.Null()
 		else:
-			raise Exception("the first argument to if must be a boolean")
+			h4x.error.runtime_error("the first argument to if must be a boolean")
 	else:
 		raise Exception("if needs at least 2 arguments")
 
@@ -28,6 +34,7 @@ def func_if(args, scopes):
 # //---LOOPS---\\ #
 def func_repeat(args, scopes):
 	scopes.append({})
+	scopes[-1]["*trace"] = h4x.make_trace("repeat")
 	result = h4x.datatypes.Null()
 	amount = h4x.eval(args[0], scopes).value
 	for i in range(amount):
@@ -37,6 +44,7 @@ def func_repeat(args, scopes):
 
 def func_while(args, scopes):
 	scopes.append({})
+	scopes[-1]["*trace"] = h4x.make_trace("while")
 	result = h4x.datatypes.Null()
 	body = args[1:]
 	while True:

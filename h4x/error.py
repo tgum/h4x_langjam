@@ -12,7 +12,7 @@ def get_line(index, string):
 			line_num += 1
 	return line_num, line_index
 
-def token_error(message, index):
+def token(message, index):
 	line_num, line_index = get_line(index, h4x.program)
 	line = h4x.program.split('\n')[line_num]
 	print(f"There has been an error during tokenization")
@@ -20,21 +20,46 @@ def token_error(message, index):
 	print(f"at line {line_num+1} character {index - line_index}")
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
+
 	sys.exit()
 
-def parser_error(message, start):
+def parser(message, start):
 	index = start.index
 	line_num, line_index = get_line(index, h4x.program)
 	line = h4x.program.split('\n')[line_num]
-
 
 	print(f"There has been an error during parsing")
 	print(f"{message}")
 	print(f"at line {line_num} character {index - line_index}")
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
-	sys.exit()
-	raise Exception(message)
 
-def runtime_error(message):
-	raise Exception(message)
+	sys.exit()
+
+def runtime(message):
+	index = h4x.DEBUG_last_token.index
+	line_num, line_index = get_line(index, h4x.program)
+	line = h4x.program.split('\n')[line_num]
+
+	print(f"There has been an error during evaluation")
+	print(f"{message}")
+	print(f"at line {line_num} character {index - line_index}")
+	print(f"{line}")
+	print(f"{'^'.rjust(index - line_index)}")
+
+	print("Traceback:")
+	for scope in h4x.DEBUG_scopes:
+		if "*trace" in scope:
+			trace = scope["*trace"]
+			line_num = 0
+			if trace["token"] != None:
+				token = trace["token"]
+				line_num, line_index = get_line(token.index, h4x.program)
+
+			line = h4x.program.split('\n')[line_num]
+			print(f"  in {trace['scope']} at line {line_num}")
+			print(f"  | {line}")
+		else:
+			print("no trace")
+
+	sys.exit()

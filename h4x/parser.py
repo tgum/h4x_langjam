@@ -23,7 +23,7 @@ def get_matching(start, tokens_list):
 	while depth >= 0:
 		index += 1
 		if index > len(tokens_list) - 1:
-			error.parser_error("Unmatched parenthesis", tokens_list[start])
+			error.parser("Unmatched parenthesis", tokens_list[start])
 		token = tokens_list[index]
 		if token.type == tokens.TokenTypes.OPEN_PAREN:
 			depth += 1

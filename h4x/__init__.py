@@ -13,6 +13,9 @@ from . import runner
 
 program = ""
 
+DEBUG_last_token = None
+DEBUG_scopes = []
+
 tokenize = lexer.tokenize
 tokens_to_tree = parser.parse
 eval = runner.eval
@@ -31,14 +34,15 @@ def import_module(scope, name, prefix=""):
 			scope[key] = module.exports[key]
 		return scope
 
+def make_trace(scope):
+	return {"scope": scope, "token": DEBUG_last_token}
 def create_scopes():
-	return [{}]
+	scopes = [{}]
+	scopes[0]["*trace"] = make_trace("Program")
+	return scopes
 
 def parse(prog):
-	global program
-	program = prog
-
-	tokens = tokenize(program)
+	tokens = tokenize(prog)
 	return tokens_to_tree(tokens)
 
 def run(program):

@@ -3,7 +3,7 @@ import pprint
 import h4x
 from . import datatypes
 from . import tokens
-
+from . import error
 
 DEBUG = False
 
@@ -23,6 +23,12 @@ def eval(expr, scopes):
 		prettyprint("evaling")
 		prettyprint(expr)
 
+	if type(expr) != list:
+		if "*trace" in scopes[-1]:
+			scopes[-1]["*trace"]["token"] = expr
+		h4x.DEBUG_last_token = expr
+	h4x.DEBUG_scopes = scopes
+
 	evaled = None
 	if type(expr) == list:
 		evaled = []
@@ -39,7 +45,7 @@ def eval(expr, scopes):
 					if len(evaled) - 1 == first.num_args:
 						evaled = first.exec(evaled[1:], scopes)
 					else:
-						raise Exception(f"{first} expected {first.num_args} but got {len(evaled) - 1}")
+						error.runtime(f"{first} expected {first.num_args} but got {len(evaled) - 1}")
 			else:
 				for subexpr in expr[1:]:
 					if isinstance(subexpr, datatypes.BasicType):
@@ -61,7 +67,7 @@ def eval(expr, scopes):
 				evaled = scope[expr.data]
 				break
 		if evaled == None:
-			raise Exception(f"{expr.data} is not defined in any scope")
+			error.runtime(f'"{expr.data}" is not defined in any scope')
 	elif isinstance(expr, datatypes.BasicType):
 		return expr
 

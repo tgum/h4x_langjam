@@ -13,6 +13,7 @@ def func_prnt_scope(args, scopes):
 
 def func_do(args, scopes):
 	scopes.append({})
+	scopes[-1]["*trace"] = h4x.make_trace("do")
 	result = h4x.eval(args, scopes)
 	scopes.pop()
 	return result
@@ -62,3 +63,4 @@ exports["scopes"] = h4x.datatypes.PyExec(func_prnt_scope, 0)
 
 exports["true"] =  h4x.datatypes.Bool(True)
 exports["false"] = h4x.datatypes.Bool(False)
+exports["null"] = h4x.datatypes.Null()

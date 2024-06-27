@@ -1,6 +1,7 @@
 from pprint import pprint
 import string
 
+import h4x
 from . import tokens
 from . import error
 
@@ -41,6 +42,8 @@ hello_10 IDENTIFIER
 """
 
 def tokenize(prog):
+	h4x.program = prog
+
 	global program, index, tokens_list, build_type, currently_building
 	program = prog
 	
@@ -87,7 +90,7 @@ def tokenize(prog):
 				nextchar(-1)
 			else:
 				currently_building += char
-				error.token_error(f"There is something bad with this number. {currently_building} shouldn't have {char}.", index)
+				error.token(f"There is something bad with this number. {currently_building} shouldn't have {char}.", index)
 		elif build_type == tokens.TokenTypes.IDENTIFIER:
 			if char in delimiters:
 				make_token()
@@ -105,5 +108,5 @@ def tokenize(prog):
 
 		nextchar()
 	if build_type not in [tokens.TokenTypes.UNDEFINED, tokens.TokenTypes.COMMENT]:
-		error.token_error(f"Unfinished token: {currently_building} should be a {build_type} but it wasnt finished", index)
+		error.token(f"Unfinished token: {currently_building} should be a {build_type} but it wasnt finished", index)
 	return tokens_list

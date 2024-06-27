@@ -1,6 +1,7 @@
 from pprint import pprint
 import json
-from . import runner
+
+import h4x
 
 class BasicType:
 	def __init__(self):
@@ -18,6 +19,10 @@ class Null(Value):
 	def __init__(self):
 		self.type = "NULL"
 		self.value = None
+	def __repr__(self):
+		return "Null"
+	def __str__(self):
+		return "Null"
 class Number(Value):
 	def __init__(self, value):
 		self.type = "NUMBER"
@@ -93,9 +98,10 @@ class H4xExec(EvaledExec):
 		self.func_body = function
 	def exec(self, args, scopes):
 		scopes.append({})
+		scopes[-1]["*trace"] = h4x.make_trace("function")
 		for i, arg in enumerate(args):
 			scopes[-1][self.arg_names[i]] = arg
-		result = runner.eval(self.func_body, scopes)
+		result = h4x.eval(self.func_body, scopes)
 		scopes.pop()
 		return result
 
