@@ -15,9 +15,12 @@ def func_index(args, scopes):
 	return args[0].index(args[1].value)
 def func_push(args, scopes):
 	return args[0].push(args[1])
+def func_set(args, scopes):
+	return args[0].set(args[1].value, args[2])
 
 exports["#l"] = h4x.datatypes.SpecialExec(func_list)
 
 exports["#len"] = h4x.datatypes.PyExec(func_len, 1)
 exports["#nth"] = h4x.datatypes.PyExec(func_index, 2)
 exports["#push"] = h4x.datatypes.PyExec(func_push, 2)
+exports["#set"] = h4x.datatypes.PyExec(func_set, 3)

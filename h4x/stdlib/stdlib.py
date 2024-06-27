@@ -6,7 +6,7 @@ exports = {}
 
 # //---BASIC STUFFS IG?---\\ #
 def func_print(args, scopes):
-	print(args[0].value)
+	print(args[0])
 	return args[0]
 def func_prnt_scope(args, scopes):
 	pprint(scopes)

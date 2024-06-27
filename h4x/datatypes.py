@@ -12,6 +12,8 @@ class Value(BasicType):
 		self.type = "VALUE"
 	def __repr__(self):
 		return self.type + ":" + str(self.value)
+	def __str__(self):
+		return str(self.value)
 class Null(Value):
 	def __init__(self):
 		self.type = "NULL"
@@ -38,6 +40,23 @@ class H4xList(Value):
 		result = self.value[:]
 		result.append(value)
 		return H4xList(result)
+	def set(self, index, value):
+		result = self.value[:]
+		result[index] = value
+		return H4xList(result)
+
+	def __str__(self):
+		result = "("
+		for i, elt in enumerate(self.value):
+			result += str(elt)
+			if i < len(self.value) - 1:
+				result += ", "
+		return result + ")"
+	def __repr__(self):
+		result = self.type  + "("
+		for i, elt in enumerate(self.value):
+			result += elt + ", "
+		return result + ")"
 class String(H4xList):
 	def __init__(self, value):
 		self.type = "STRING"
@@ -48,6 +67,11 @@ class String(H4xList):
 	def push(self, value):
 		result = self.value + str(value.value) # TEMPORARY STRINGIFICATION
 		return String(result)
+
+	def __str__(self):
+		return self.value
+	def __repr__(self):
+		return self.type + self.value
 
 class Exec(BasicType):
 	def __init__(self):

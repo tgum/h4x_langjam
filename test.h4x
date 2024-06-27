@@ -9,6 +9,8 @@
 (print (#nth list 0))
 (print (#len list))
 (print (#push list 5))
+(print (#set list 1 42))
+(print list)
 
 (define string "hello")
 (print string)
