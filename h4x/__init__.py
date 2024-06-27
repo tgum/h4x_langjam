@@ -9,7 +9,7 @@ from . import parser
 from . import datatypes
 from . import runner
 
-#runner.DEBUG = True
+DEBUG = False
 
 program = ""
 
@@ -33,6 +33,8 @@ def import_module(scope, name, prefix=""):
 		for key in module.exports.keys():
 			scope[key] = module.exports[key]
 		return scope
+	else:
+		error.runtime(f"Couldn't find module {name} in path {path}")
 
 def make_trace(scope):
 	return {"scope": scope, "token": DEBUG_last_token}

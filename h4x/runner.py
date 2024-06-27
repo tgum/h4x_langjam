@@ -5,9 +5,6 @@ from . import datatypes
 from . import tokens
 from . import error
 
-DEBUG = False
-
-
 def prettyprint(stuff):
 	pretty = pprint.pformat(stuff)
 	for line in pretty.split("\n"):
@@ -18,7 +15,7 @@ depth = -1
 def eval(expr, scopes):
 	global depth
 	depth += 1
-	if DEBUG:
+	if h4x.DEBUG:
 		print()
 		prettyprint("evaling")
 		prettyprint(expr)
@@ -71,7 +68,7 @@ def eval(expr, scopes):
 	elif isinstance(expr, datatypes.BasicType):
 		return expr
 
-	if DEBUG:
+	if h4x.DEBUG:
 		prettyprint("returns")
 		prettyprint(evaled)
 		input("")

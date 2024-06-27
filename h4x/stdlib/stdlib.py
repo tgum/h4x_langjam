@@ -30,18 +30,18 @@ def func_fn(args, scopes):
 
 def func_define(args, scopes):
 	if len(args) != 2:
-		raise Exception(f"Define needs two arguments: syntax (define a 5). It got {len(args)}")
+		h4x.error.runtime_error(f"Define needs two arguments, syntax (define a 5). It got {len(args)}")
 	if args[0].type != h4x.tokens.TokenTypes.IDENTIFIER:
-		raise Exception(f"the first parameter of define needs to be an identifier")
+		h4x.error.runtime_error(f"The first parameter to define needs to be an identifier, instead it got a {args[0].type}")
 	varname = args[0].data
 	value = h4x.eval(args[1], scopes)
 	scopes[-1][varname] = value
 	return value
 def func_set(args, scopes):
 	if len(args) != 2:
-		raise Exception(f"set needs two arguments: syntax (set a 5). It got {len(args)}")
+		h4x.error.runtime_error(f"Set needs two arguments, syntax (set a 5). It got {len(args)}")
 	if args[0].type != h4x.tokens.TokenTypes.IDENTIFIER:
-		raise Exception(f"the first parameter of set needs to be an identifier")
+		h4x.error.runtime_error(f"The first parameter to set needs to be an identifier, instead it got a {args[0].type}")
 	varname = args[0].data
 	value = h4x.eval(args[1], scopes)
 	for scope in reversed(scopes):

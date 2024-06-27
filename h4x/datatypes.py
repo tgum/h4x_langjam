@@ -60,7 +60,7 @@ class H4xList(Value):
 	def __repr__(self):
 		result = self.type  + "("
 		for i, elt in enumerate(self.value):
-			result += elt + ", "
+			result += repr(elt) + ", "
 		return result + ")"
 class String(H4xList):
 	def __init__(self, value):
@@ -76,7 +76,7 @@ class String(H4xList):
 	def __str__(self):
 		return self.value
 	def __repr__(self):
-		return self.type + self.value
+		return self.type + ":" + self.value
 
 class Exec(BasicType):
 	def __init__(self):

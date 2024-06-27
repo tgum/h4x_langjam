@@ -23,7 +23,6 @@
 (do
   (define a 5) ~ this defines a variable
   (print a)
-  lol
 )
 (print "")
 
