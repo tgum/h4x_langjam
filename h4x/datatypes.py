@@ -23,16 +23,16 @@ class Null(Value):
 		return "Null"
 	def __str__(self):
 		return "Null"
-class Number(Value):
-	def __init__(self, value):
-		self.type = "INTEGER"
-		self.value = int(value)
 class Float(Value):
 	def __init__(self, value):
 		self.type = "FLOAT"
 		self.value = float(value)
 	def __str__(self):
 		return f'{self.value:g}'
+class Number(Float):
+	def __init__(self, value):
+		self.type = "INTEGER"
+		self.value = int(value)
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"
@@ -82,7 +82,7 @@ class String(H4xList):
 	def __str__(self):
 		return self.value
 	def __repr__(self):
-		return self.type + ":" + self.value
+		return self.type + ":\"" + self.value + "\""
 
 class Exec(BasicType):
 	def __init__(self):

@@ -1,5 +1,6 @@
+import readline
 import sys
-import pprint
+from pprint import pprint
 
 import h4x
 
@@ -22,16 +23,25 @@ scopes[0]["exit"] = h4x.datatypes.PyExec(func_exit, 0)
 scopes[0]["quit"] = scopes[0]["exit"]
 scopes[0]["debug"] = h4x.datatypes.PyExec(func_debug, 0)
 
+scopes[0][""] = h4x.datatypes.Null()
+
+canceled = "="
 while True:
-	program = input("> ") + "\n"
-	tokenized = h4x.tokenize(program)
-	while not h4x.parser.valid_program(tokenized):
-		program += input(". ") + "\n"
+	try:
+		program = input(canceled + "> ") + "\n"
 		tokenized = h4x.tokenize(program)
+		while not h4x.parser.valid_program(tokenized):
+			program += input(canceled + "] ") + "\n"
+			tokenized = h4x.tokenize(program)
+	except KeyboardInterrupt:
+		print()
+		canceled = "-"
+		continue
+	canceled = "="
 
 	parsed = h4x.tokens_to_tree(tokenized)
-	pprint(parsed)
-	evaled = h4x.eval(parsed[0], scopes)
+	evaled = h4x.eval(parsed, scopes)
+	print("<" + canceled, end=" ")
 	print(evaled)
 
 

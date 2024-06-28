@@ -42,6 +42,7 @@ hello_10 IDENTIFIER
 """
 
 def tokenize(prog):
+	prog += "\n"
 	h4x.program = prog
 
 	global program, index, tokens_list, build_type, currently_building
@@ -86,8 +87,13 @@ def tokenize(prog):
 			else:
 				currently_building += char
 		elif build_type == tokens.TokenTypes.NUMBER:
-			if char in string.digits + ".":
+			if char in string.digits:
 				currently_building += char
+			elif char == ".":
+				if not "." in currently_building:
+					currently_building += char
+				else:
+					error.token(f"There can be only 1 decimal point in a number, but {currently_building + '.'} has more", index)
 			elif char in delimiters:
 				make_token()
 				nextchar(-1)

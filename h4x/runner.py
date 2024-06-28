@@ -40,7 +40,7 @@ def eval(expr, scopes):
 					if len(evaled) - 1 == first.num_args:
 						evaled = first.exec(evaled[1:], scopes)
 					else:
-						error.runtime(f"{first} expected {first.num_args} but got {len(evaled) - 1}")
+						error.runtime(f"{first} expected {first.num_args} argument but got {len(evaled) - 1}")
 			else:
 				for subexpr in expr[1:]:
 					if isinstance(subexpr, datatypes.BasicType):

@@ -2,7 +2,7 @@ from pprint import pprint
 
 import h4x
 
-with open("test.h4x", "r") as f:
+with open("tests/numbers.h4x", "r") as f:
 	program = f.read()
 
 

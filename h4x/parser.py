@@ -3,6 +3,8 @@ from pprint import pprint
 from . import error
 from . import tokens
 
+null = tokens.Token(tokens.TokenTypes.IDENTIFIER, "", 0)
+
 def valid_program(tokens_list):
 	return parse(tokens_list, validate=True)
 
