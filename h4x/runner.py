@@ -8,7 +8,7 @@ from . import error
 def prettyprint(stuff):
 	pretty = pprint.pformat(stuff)
 	for line in pretty.split("\n"):
-		print("   " * depth + line)
+		print(">>|" * depth + line)
 
 depth = -1
 
@@ -16,8 +16,6 @@ def eval(expr, scopes):
 	global depth
 	depth += 1
 	if h4x.DEBUG:
-		print()
-		prettyprint("evaling")
 		prettyprint(expr)
 
 	if type(expr) != list:
@@ -74,7 +72,7 @@ def eval(expr, scopes):
 	if h4x.DEBUG:
 		prettyprint("returns")
 		prettyprint(evaled)
-		input("")
+		#input("")
 
 	depth -= 1
 	return evaled

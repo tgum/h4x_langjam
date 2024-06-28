@@ -31,6 +31,8 @@ class Float(Value):
 	def __init__(self, value):
 		self.type = "FLOAT"
 		self.value = float(value)
+	def __str__(self):
+		return f'{self.value:g}'
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"
