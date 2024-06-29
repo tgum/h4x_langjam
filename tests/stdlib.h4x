@@ -21,7 +21,13 @@
 ~(print (for i () (print i) ) ) ~ error
 
 (print " REPEAT ")
-(print (repeat 10 (print "repeating") ) )
+(print (repeat 10 (print "repeating") ) ) ~ should say repeating 10 times
+~(print (repeat 5) ) ~ error
+~(print (repeat "hello" ) ) ~ error
+(print (repeat "hello" (print "yo")) ) ~ error
+(print (repeat ) ) ~ error
 
 
+(print " WHILE ")
+~ im too lazy to write more tests
 ""

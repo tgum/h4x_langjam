@@ -97,14 +97,15 @@ def func_repeat(args, scopes):
 	if not len(args) >= 2:
 		h4x.error.runtime(f"repeat needs at least 2 arguments, syntax: (repeat amount body), instead it got {len(args)}")
 
-	scopes.append({}) # create scope
-	scopes[-1]["*trace"] = h4x.make_trace("repeat")
-
 	result = null
 	amount = h4x.eval(args[0], scopes)
 
 	if not isinstance(amount, h4x.datatypes.Number):
 		h4x.error.runtime(f"The first argument to repeat must evaluate to a number, instead it evaluated to {repr(amount)}")
+	
+	scopes.append({}) # create scope
+	scopes[-1]["*trace"] = h4x.make_trace("repeat")
+
 	
 	for i in range(amount.value):
 		result = h4x.eval(args[1:], scopes)

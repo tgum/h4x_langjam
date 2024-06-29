@@ -30,7 +30,7 @@ def parser(message, start):
 
 	print(f"There has been an error during parsing")
 	print(f"{message}")
-	print(f"at line {line_num} character {index - line_index}")
+	print(f"at line {line_num+1} character {index - line_index}")
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
 
@@ -43,7 +43,7 @@ def runtime(message):
 
 	print(f"There has been an error during evaluation")
 	print(f"{message}")
-	print(f"at line {line_num} character {index - line_index}")
+	print(f"at line {line_num+1} character {index - line_index}")
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
 
@@ -57,7 +57,7 @@ def runtime(message):
 				line_num, line_index = get_line(token.index, h4x.program)
 
 			line = h4x.program.split('\n')[line_num]
-			print(f"  in {trace['scope']} at line {line_num}")
+			print(f"  in {trace['scope']} at line {line_num+1}")
 			print(f"  | {line}")
 		else:
 			print("no trace")
