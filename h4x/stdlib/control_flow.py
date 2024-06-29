@@ -12,14 +12,16 @@ null = h4x.datatypes.Null()
 (if cond body_true optional_body_false)
 """
 def func_if(args, scopes):
-	if len(args) >= 2:
+	if len(args) >= 2 and len(args) <= 3:
 		condition = h4x.eval(args[0], scopes)
 		if isinstance(condition, h4x.datatypes.Bool):
 			if condition.value:
 				scopes.append({})
 				scopes[-1]["*trace"] = h4x.make_trace("if true") # create scope
+
 				body_true = args[1]
 				result = h4x.eval(body_true, scopes)
+
 				scopes.pop()
 				return result
 			elif len(args) > 2:
@@ -32,16 +34,16 @@ def func_if(args, scopes):
 			else:
 				return null
 		else:
-			h4x.error.runtime("the first argument to if must be a boolean")
+			h4x.error.runtime(f"the first argument to if must be a boolean, instead it got {repr(args[0])}")
 	else:
-		h4x.error.runtime("if needs at least 2 arguments")
+		h4x.error.runtime(f"if needs at least 2 arguments, but it got {len(args)}")
 
 
 # //---LOOPS---\\ #
 
 """syntax
-not yet (for var (start end increment) body)
-not yet (for var (start end) body)
+(for var (start end increment) body)
+(for var (start end) body)
 (for var (amount) body)
 """
 def func_for(args, scopes):
@@ -56,7 +58,7 @@ def func_for(args, scopes):
 	if type(loop) != list:
 		h4x.error.runtime(f"The second argument to for should be in parenthesis, syntax (for var (amount) body), instead it got {loop}")
 	if not (len(loop) >= 1 and len(loop) <= 3):
-		h4x.error.runtime(f"The second argument to for should have 1-3 elements in it, instead it got {len(loop)}")
+		h4x.error.runtime(f"The second argument to for should be a list with 1-3 elements in it, instead it got {len(loop)}")
 
 	for i, elt in enumerate(loop):
 		loop[i] = h4x.eval(elt, scopes)
@@ -70,8 +72,6 @@ def func_for(args, scopes):
 	start = loop[0] if len(loop) >= 2 else h4x.datatypes.Number(0)
 	end = (loop[1].value if len(loop) >= 2 else loop[0].value)
 	increment = loop[2].value if len(loop) == 3 else 1
-
-	print(start, end, increment)
 
 	scopes[-1][varname] = start
 	

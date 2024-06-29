@@ -1,8 +1,13 @@
 from pprint import pprint
+import sys
 
 import h4x
 
-with open("tests/numbers.h4x", "r") as f:
+filename = "tests/stdlib.h4x"
+if len(sys.argv) > 1:
+	filename = sys.argv[1]
+
+with open(filename, "r") as f:
 	program = f.read()
 
 
