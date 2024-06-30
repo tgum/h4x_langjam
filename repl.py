@@ -30,7 +30,7 @@ while True:
 	try:
 		program = input(canceled + "> ") + "\n"
 		tokenized = h4x.tokenize(program)
-		while not h4x.parser.valid_program(tokenized):
+		while not h4x.parser.is_valid_program(tokenized):
 			program += input(canceled + "] ") + "\n"
 			tokenized = h4x.tokenize(program)
 	except KeyboardInterrupt:

@@ -5,7 +5,7 @@ from . import tokens
 
 null = tokens.Token(tokens.TokenTypes.IDENTIFIER, "", 0)
 
-def valid_program(tokens_list):
+def is_valid_program(tokens_list):
 	return parse(tokens_list, validate=True)
 
 def parse(tokens_list, depth=0, validate=False):
