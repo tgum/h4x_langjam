@@ -1,6 +1,6 @@
 # H4X
 
-My project for the hackclub langjam. An easily embedable lisp like
+An easily embedable lisp like. Made for the hackclub langjam.
 
 ```
 {fibonacci}
@@ -18,3 +18,8 @@ My project for the hackclub langjam. An easily embedable lisp like
 )
 (print fib 10) ~ <= 6765
 ```
+
+# TODO
+ - Change the parsing/evaluation to and iterative function instead of a recursive one
+ - Add dictionaries/hashmaps
+ - Add more standard library (such as string manipulation)
