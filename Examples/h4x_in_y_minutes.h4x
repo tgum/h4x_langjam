@@ -1,0 +1,36 @@
+~ this is a comment
+{
+  this too
+  is also
+  a comment
+  but it
+  can spread
+  over multiple
+  lines as
+  you can
+  see (hopefully)
+}
+
+{
+  h4x (this language) is similar to lisp.
+  so that means a lot of parentheses so be warned.
+  everything is a value or a function (and functions are basically values)
+  even operators are functions, to call a funciton
+}
+
+
+(print "print suprisingly prints text")
+
+~ define creates a completely new and original (unlike this language)
+~ variable in the scope its in
+(define i 42)
+
+~ then you can just access it like in any other normal language
+(print i)
+~ OMG!!11!!1!!!! IT PRINTED 42
+
+(do
+  (define i 1337)
+  (print i)
+)
+(print i)

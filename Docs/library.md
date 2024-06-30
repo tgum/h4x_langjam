@@ -43,7 +43,7 @@ Modules are just python files with an `exports` dictionary which will be merged 
 Each key is the name of the variable and its value is an instance of the classes in `h4x.datatypes`. 
 
 
-### creating a module tutorial
+### creating a module 101
 Let's make a module called `foo` with a function `foo:bar` which prints baz.
 Create a file "foo.py" and put it in the same folder as the file that runs h4x.eval
 ```python
@@ -57,4 +57,8 @@ def func_bar(args, scopes):
 exports["foo:bar"] = h4x.datatypes.PyExec(func_bar, 0)
 ```
 So first you import h4x to get access to the datatypes and stuff.
-Then you create and exports variable which is 
+Then you create and exports variable which is where you put all your functions/data which will be accessed by h4x.
+
+All the functions called by h4x take 2 arguments. The args that are passed to it, and all the scopes.
+it returns a `h4x.datatypes.String` because thats how the evaluator knows its a string and can do stuffs with it. Thats the same for `h4x.dataytypes.PyExec` is a function that can be called from h4x, the constructor takes to arguments. 1: the function, 2: the amount of arguments it needs.
+If you want a variable amount of arguments/more overall control, for now the best way its to read the code and look into `h4x.datatypes.SpecialExec` cause im kinda tired of writing docs about this rn sorry
