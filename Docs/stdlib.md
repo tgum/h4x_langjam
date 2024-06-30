@@ -1,9 +1,13 @@
+# completely unfinished TODO
+
 # Standard library reference
 
 ## Control flow
 
 ### if
+(creates a new scope)
 
+If the first argument is a true bool, evaluate the second arg, else evalueate the third one.
 syntax:
 ```
 (if (= 5 6)
@@ -15,22 +19,30 @@ syntax:
 The last argument is optional.
 
 ### for
+(creates a new scope)
 
-syntax 1:
+Defines the variable "varname" to 0, evaluates the body, increment varname, if varname < amount repeat
+syntax:
 ```
-(for i (amount)
+(for varname (amount)
     body
 )
 ```
-syntax 2:
+
+Defines the variable "varname" to start, evaluates the body, increment varname, if varname < end repeat
+syntax:
 ```
-(for i (start end)
+(for varname (start end)
     body
 )
 ```
-syntax 3:
+
+Defines the variable "varname" to start, evaluates the body, increment varname by increment, if varname < end repeat
+syntax:
 ```
-(for i (start end increment)
+(for varname (start end increment)
     body
 )
 ```
+
+### repeat
