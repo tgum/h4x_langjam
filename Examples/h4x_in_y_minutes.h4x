@@ -120,8 +120,26 @@
   (print i)
 )
 
+(print)
 { while loops yk repeat stuff until the condition is false }
 (while {condition} (> variable 0)
   (print variable)
   (set variable (- variable 4))
 )
+
+
+{ ALL YOUR MATH ARE BELONG TO US }
+~ all the math operators i could think of are in here
+{ 
+  + * / - = (you can also use == if you want)
+  != <= >= < > not and or (no && || ! that's just ugly)
+}
+
+
+{ what would be a lisp without lists lol }
+{
+  the functions that start with a # are list operations (just a convention i invented because i can)
+  to create a list use the #l function
+}
+(set my_list (#l 1 2 3) )
+(print my_list)

@@ -11,8 +11,9 @@ def func_print(args, scopes):
 	"""Prints a value"""
 	result = null
 	for arg in args:
-		print( str(args) )
+		print( str(h4x.eval(args, scopes)), end=" ")
 		result = arg
+	print()
 	return result
 def func_prnt_scope(args, scopes):
 	"""DEBUG prints the scopes"""

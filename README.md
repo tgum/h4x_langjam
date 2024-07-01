@@ -48,6 +48,10 @@ python repl.py
 To use embed h4x in you own projects see [Docs/library.md](Docs/library.md)
 
 
+# Bugs
+this is very (probably) very buggy software idk if ill continue once langjam is over i think it would be cool
+if you find bugs and stuff or have suggestions you can create an issue at the repo [https://github.com/tgum/h4x_langjam/issues]
+
 # TODO
  - Change the parsing/evaluation to and iterative function instead of a recursive one
  - Add dictionaries/hashmaps
