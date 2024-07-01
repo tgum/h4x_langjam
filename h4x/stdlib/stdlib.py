@@ -74,10 +74,14 @@ def func_set(args, scopes):
 		h4x.error.runtime(f"The first parameter to set needs to be an identifier, instead it got a {args[0].type}")
 	varname = args[0].data
 	value = h4x.eval(args[1], scopes)
+	found_var = False
 	for scope in reversed(scopes):
 		if varname in scope:
 			scope[varname] = value
+			found_var = True
 			break
+	if not found_var:
+		scopes[0][varname] = value
 	#return value
 	return null
 

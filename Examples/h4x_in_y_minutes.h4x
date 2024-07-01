@@ -140,6 +140,14 @@
 {
   the functions that start with a # are list operations (just a convention i invented because i can)
   to create a list use the #l function
+  also strings are just special lists so most of the list functions should work on strings
 }
-(set my_list (#l 1 2 3) )
+(define my_list (#l 1 2 3) )
 (print my_list)
+
+(print (#len my_list) ) ~ get length of list
+(print (#nth my_list 0) ) ~ #nth indexes. indexing starts at 0! (what is 0 factorial btw?)
+{ the functions that modify lists don't actually modify the list, it modifies a
+  copy that will be returned }
+(print (#set my_list 2 "hello") ) ~ set sets the value at an index of the list.
+(print (#push my_list "world"))
