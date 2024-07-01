@@ -11,23 +11,29 @@
   see (hopefully)
 }
 
-{
-  h4x (this language) is similar to lisp.
+{ h4x (this language) is similar to lisp.
   so that means a lot of parentheses so be warned.
   everything is a value or a function (and functions are basically values)
-  even operators are functions, to call a funciton
-}
+  even operators are functions, to call a function
+  just put in in parentheses with other values (optionally)
+  like this:                                                     }
+(print "print surprisingly prints text")
+~ double quotes forever
+
+{ then you can nest these function calls
+  a program is just a bunch of nested function calls   }
+(print (+ 1 2) )
+~ the + operator is also a function
 
 
-(print "print suprisingly prints text")
-
+(define i 43)
 ~ define creates a completely new and original (unlike this language)
 ~ variable in the scope its in
-(define i 42)
 
 ~ then you can just access it like in any other normal language
-(print i)
+(print (- i 1) )
 ~ OMG!!11!!1!!!! IT PRINTED 42
+
 
 (do
   (define i 1337)
