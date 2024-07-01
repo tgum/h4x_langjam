@@ -20,6 +20,9 @@ def func_prnt_scope(args, scopes):
 	pprint(scopes)
 	return null
 
+def func_error(args, scopes):
+	h4x.error.runtime(str(args[0]))
+
 def func_type(args, scopes):
 	"""Return the type of the argument"""
 	return args[0].type
@@ -95,6 +98,7 @@ exports["set"] =    h4x.datatypes.SpecialExec(func_set)
 
 exports["print"] =  h4x.datatypes.SpecialExec(func_print)
 exports["type"] =   h4x.datatypes.PyExec(func_type, 1)
+exports["error"] =   h4x.datatypes.PyExec(func_error, 1)
 exports["scopes"] = h4x.datatypes.PyExec(func_prnt_scope, 0)
 
 exports["true"] =  h4x.datatypes.Bool(True)

@@ -152,3 +152,18 @@
 (print (#set my_list 2 "hello") ) ~ set sets the value at an index of the list.
 (print (#push my_list "world") ) ~ pushes something to the end of a list
 (print (#pop my_list) ) ~ pop removes the last element of a list.
+
+
+{ IMPORT }
+{
+  yeah u can import stuffs
+  it will search for it in h4x.PATH
+  which by default is the current folder and h4x.stdlib
+  its kinda buggy and only supports python modules rn
+
+  (if i make it support h4x modules i guess ill do includes (like it runs the
+  other program) but its kinda complicated with how i handle errors currently
+  so yeah not yet. actually i should move this to Docs/library.md but ehhhhhh)
+}
+(import str)
+(print (str:upper "hello world"))

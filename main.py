@@ -14,8 +14,8 @@ with open(filename, "r") as f:
 scopes = h4x.create_scopes()
 h4x.import_module(scopes[0], "h4x.stdlib")
 
-parsed = h4x.parse(program)
 try:
+	parsed = h4x.parse(program)
 	evaled = h4x.eval(parsed, scopes)
 except h4x.error.H4xError:
 	pass

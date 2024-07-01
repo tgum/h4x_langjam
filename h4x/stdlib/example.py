@@ -1,5 +1,3 @@
-from pprint import pprint
-
 import h4x
 
 exports = {}

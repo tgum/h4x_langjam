@@ -30,6 +30,8 @@ After you can just evaluate that tree
 h4x.eval(parsed_program, scopes)
 ```
 
+If theres an error while evaluating/parsing/tokenizing it will raise a h4x.error.H4xError, I reccomend putting that in a try/except block to not have ugly python error msg
+
 # Notes
 
 ## parsing
@@ -62,3 +64,5 @@ Then you create and exports variable which is where you put all your functions/d
 All the functions called by h4x take 2 arguments. The args that are passed to it, and all the scopes.
 it returns a `h4x.datatypes.String` because thats how the evaluator knows its a string and can do stuffs with it. Thats the same for `h4x.dataytypes.PyExec` is a function that can be called from h4x, the constructor takes to arguments. 1: the function, 2: the amount of arguments it needs.
 If you want a variable amount of arguments/more overall control, for now the best way its to read the code and look into `h4x.datatypes.SpecialExec` cause im kinda tired of writing docs about this rn sorry
+
+if you want more examples check out h4x/stdlib/ all of these are modules
