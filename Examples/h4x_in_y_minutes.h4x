@@ -1,15 +1,13 @@
 ~ this is a comment
 {
-  this too
-  is also
-  a comment
-  but it
-  can spread
-  over multiple
-  lines as
-  you can
+  this too is also
+  a comment but it
+  can spread over multiple
+  lines as you can
   see (hopefully)
 }
+
+~ also you might want to experiment with the repl to test out the stuff
 
 { h4x (this language) is similar to lisp.
   so that means a lot of parentheses so be warned.
@@ -26,17 +24,43 @@
 ~ the + operator is also a function
 
 
-(define i 43)
+(define variable 43)
 ~ define creates a completely new and original (unlike this language)
 ~ variable in the scope its in
 
 ~ then you can just access it like in any other normal language
-(print (- i 1) )
+(print (- variable 1) )
 ~ OMG!!11!!1!!!! IT PRINTED 42
 
-
+~ do creates a new scope where you can change variables independently of outside it
 (do
-  (define i 1337)
-  (print i)
+  ~ but you can still access them in here if you don't change them
+  (print variable) ~ this will print the one outside
+  ~ define redefines it tho
+  (define variable 1337) ~ now it creates one in this scope
+  (print variable) ~ and it prints that one
 )
-(print i)
+~ outside of do the scope is boom destroyed kaput
+~ so you have access to the old one
+(print variable)
+
+~ you can also not get the variable destroyed
+(do
+  (set variable 101) ~ set tries to set a variable in the closest outer scope
+  (print variable)
+)
+(print variable) ~ it changed
+
+~ if
+(if true
+  (print "if statements")
+)
+
+(if (= variable 100)
+  ~ if true
+  (print "this should not get executed")
+  ~ if false
+  (print "this is the else body")
+)
+~ there is no elif/else if.
+~ you have to nest ifs
