@@ -150,4 +150,5 @@
 { the functions that modify lists don't actually modify the list, it modifies a
   copy that will be returned }
 (print (#set my_list 2 "hello") ) ~ set sets the value at an index of the list.
-(print (#push my_list "world"))
+(print (#push my_list "world") ) ~ pushes something to the end of a list
+(print (#pop my_list) ) ~ pop removes the last element of a list.

@@ -23,6 +23,10 @@ def func_push(args, scopes):
 	if not isinstance(args[0], h4x.datatypes.H4xList):
 		h4x.error.runtime(f"The first argument to #push needs to be a H4xList, instead it got {repr(args[0])}")
 	return args[0].push(args[1])
+def func_pop(args, scopes):
+	if not isinstance(args[0], h4x.datatypes.H4xList):
+		h4x.error.runtime(f"The first argument to #push needs to be a H4xList, instead it got {repr(args[0])}")
+	return args[0].pop()
 def func_set(args, scopes):
 	if not isinstance(args[0], h4x.datatypes.H4xList):
 		h4x.error.runtime(f"The first argument to #set needs to be a H4xList, instead it got {repr(args[0])}")
@@ -35,4 +39,5 @@ exports["#l"] = h4x.datatypes.SpecialExec(func_list)
 exports["#len"] = h4x.datatypes.PyExec(func_len, 1)
 exports["#nth"] = h4x.datatypes.PyExec(func_index, 2)
 exports["#push"] = h4x.datatypes.PyExec(func_push, 2)
+exports["#pop"] = h4x.datatypes.PyExec(func_pop, 1)
 exports["#set"] = h4x.datatypes.PyExec(func_set, 3)

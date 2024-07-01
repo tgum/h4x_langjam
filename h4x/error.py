@@ -1,6 +1,9 @@
 import h4x
 import sys
 
+class H4xError(Exception):
+	"""Any type of error that happened during running a h4x program"""
+
 def get_line(index, string):
 	line_num = 0
 	line_index = 0
@@ -21,6 +24,7 @@ def token(message, index):
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
 
+	raise H4xError(message)
 	sys.exit()
 
 def parser(message, start):
@@ -34,6 +38,7 @@ def parser(message, start):
 	print(f"{line}")
 	print(f"{'^'.rjust(index - line_index)}")
 
+	raise H4xError(message)
 	sys.exit()
 
 def runtime(message):
@@ -62,4 +67,5 @@ def runtime(message):
 		else:
 			print("no trace")
 
+	raise H4xError(message)
 	sys.exit()

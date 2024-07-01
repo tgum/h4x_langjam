@@ -2,7 +2,6 @@ import h4x.stdlib
 
 functions_list = list(reversed(sorted(h4x.stdlib.exports.keys(), key=len)))
 for i, func in enumerate(functions_list):
-  print(func)
   if func in list("+*"):
     functions_list[i] = "\\" + func
 functions = "|".join(functions_list)

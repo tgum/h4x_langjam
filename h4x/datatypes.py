@@ -51,6 +51,9 @@ class H4xList(Value):
 		result = self.value[:]
 		result.append(value)
 		return H4xList(result)
+	def pop(self):
+		result = self.value[:-1]
+		return H4xList(result)
 	def set(self, index, value):
 		result = self.value[:]
 		result[index] = value

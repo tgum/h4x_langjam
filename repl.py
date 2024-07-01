@@ -40,7 +40,10 @@ while True:
 	canceled = "="
 
 	parsed = h4x.tokens_to_tree(tokenized)
-	evaled = h4x.eval(parsed, scopes)
+	try:
+		evaled = h4x.eval(parsed, scopes)
+	except h4x.error.H4xError:
+		evaled = "error"
 	print("<" + canceled, end=" ")
 	print(evaled)
 
