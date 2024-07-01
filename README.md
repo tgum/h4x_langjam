@@ -52,3 +52,4 @@ To use embed h4x in you own projects see [Docs/library.md](Docs/library.md)
  - Change the parsing/evaluation to and iterative function instead of a recursive one
  - Add dictionaries/hashmaps
  - Add more standard library (such as string manipulation)
+ - closures thats a very cool thing

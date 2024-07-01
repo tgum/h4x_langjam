@@ -51,16 +51,77 @@
 )
 (print variable) ~ it changed
 
+
 ~ if
-(if true
+(if true                             ~ (if also creates a new scope)
   (print "if statements")
 )
 
-(if (= variable 100)
-  ~ if true
+(if (= variable 100) ~ (also you can use = to test for equality because why not)
+  ~ if that's true
   (print "this should not get executed")
-  ~ if false
+  ~ else (i like to write a comment that says else to separate the if)
   (print "this is the else body")
 )
 ~ there is no elif/else if.
 ~ you have to nest ifs
+
+
+{ you can make functions too
+  they act just like any other value so you can make functions ask for functions
+  you make one like this:                      }
+(define my_function
+  (fn (arg1 arg2) ~ it takes 2 arguments, arg1 arg2           (when a function is run it also creates a new scope)
+    (print "Called my function!")
+    (if (< arg1 arg2)
+      (- arg2 arg1)
+      ~ else
+      (- arg1 arg2)
+    ) ~ it returns the result of the last expression. there's no return statement yet
+  )
+)
+
+{ now you can call it just like any other function }
+(print (my_function 5 6) ) ~ <= 1
+(print (my_function 8 4) ) ~ <= 4
+
+~ sadly it doesn't support closures :( the following code will error D: id like to do that sometime tho
+{
+(define closure null) ~ (also there is null type)
+(do
+  (define local_var 10)
+  (set closure (fn () local_var))
+)
+(closure)
+}
+
+
+{ you can also do loops yay }                   ~(loops also create new scopes)
+
+{ for loops have 3 possible syntaxes
+(for varname (amount) will set varname to 0 and increment it by 1 until it reaches amount 
+  (do stuffs)
+) }
+(for i ({amount} 10)
+  (print i)
+)
+{
+(for varname (start end) its like the previous one but varname is set to start
+  (do stuffs)
+) }
+(for i ({start} 5 {end} 15)
+  (print i)
+)
+{
+(for varname (start end increment) its like the previous one but the increment is increment
+  (do stuffs)
+) }
+(for i ({start} 5 {end} 15 {increment} 2)
+  (print i)
+)
+
+{ while loops yk repeat stuff until the condition is false }
+(while {condition} (> variable 0)
+  (print variable)
+  (set variable (- variable 4))
+)

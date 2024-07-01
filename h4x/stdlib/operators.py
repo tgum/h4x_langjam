@@ -83,6 +83,7 @@ exports["*"] =   h4x.datatypes.PyExec(func_mul, 2)
 exports["/"] =   h4x.datatypes.PyExec(func_div, 2)
 
 exports["=="] =  h4x.datatypes.PyExec(func_eq, 2)
+exports["="] =   h4x.datatypes.PyExec(func_eq, 2)
 exports["!="] =  h4x.datatypes.PyExec(func_neq, 2)
 exports["<"] =   h4x.datatypes.PyExec(func_lt, 2)
 exports[">"] =   h4x.datatypes.PyExec(func_gt, 2)

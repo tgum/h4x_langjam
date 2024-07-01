@@ -9,8 +9,11 @@ null = h4x.datatypes.Null()
 # //---BASIC STUFFS IG?---\\ #
 def func_print(args, scopes):
 	"""Prints a value"""
-	print(args[0])
-	return args[0]
+	result = null
+	for arg in args:
+		print( str(args) )
+		result = arg
+	return result
 def func_prnt_scope(args, scopes):
 	"""DEBUG prints the scopes"""
 	pprint(scopes)
@@ -85,7 +88,7 @@ exports["fn"] =     h4x.datatypes.SpecialExec(func_fn)
 exports["define"] = h4x.datatypes.SpecialExec(func_define)
 exports["set"] =    h4x.datatypes.SpecialExec(func_set)
 
-exports["print"] =  h4x.datatypes.PyExec(func_print, 1)
+exports["print"] =  h4x.datatypes.SpecialExec(func_print)
 exports["type"] =   h4x.datatypes.PyExec(func_type, 1)
 exports["scopes"] = h4x.datatypes.PyExec(func_prnt_scope, 0)
 
