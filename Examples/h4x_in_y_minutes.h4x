@@ -163,7 +163,19 @@
 
   (if i make it support h4x modules i guess ill do includes (like it runs the
   other program) but its kinda complicated with how i handle errors currently
-  so yeah not yet. actually i should move this to Docs/library.md but ehhhhhh)
+  so yeah not yet. actually i should move this paragraph to Docs/library.md
+  but ehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh)
 }
-(import str)
+(import str)   ~ also h4x comes with an str module which includes string manipulation/utilities
 (print (str:upper "hello world"))
+~ you know what ima talk about the str module while we're here
+(print (str:lower "LoWeR cAsE kInDa SuCkS bRo")) ~ make this less sarcastic
+{str:fmt is kinda cool imo, you use %% to escape %}
+(print (str:fmt "this will be %, you use %% to format stuff" "formatted"))
+~ ok there isn't much to talk about the str module
+
+{
+  thanks for reading all of this (or did you)
+  remember i made most of that in 3 weeks so plz don't hate me if
+  i make something horrible, remember javascript was made in 10 days
+}
