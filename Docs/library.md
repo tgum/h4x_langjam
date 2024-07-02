@@ -44,6 +44,8 @@ Also you can validate a token list by calling `h4x.parse.is_valid_program(tokens
 Modules are just python files with an `exports` dictionary which will be merged with the top scope.
 Each key is the name of the variable and its value is an instance of the classes in `h4x.datatypes`. 
 
+Mecause it uses python importing it doesnt work if you try to import say numpy or sys
+
 
 ### creating a module 101
 Let's make a module called `foo` with a function `foo:bar` which prints baz.

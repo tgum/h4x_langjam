@@ -37,6 +37,8 @@ while True:
 		print()
 		canceled = "-"
 		continue
+	except h4x.error.H4xError:
+		continue
 	canceled = "="
 
 	parsed = h4x.tokens_to_tree(tokenized)
