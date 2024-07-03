@@ -5,6 +5,9 @@ An easily embedable lisp like. Made for the hackclub langjam.
 Demo:
 [![asciicast](https://asciinema.org/a/p5jaysiSjwtFqH1uGdxlPhgNI.svg)](https://asciinema.org/a/p5jaysiSjwtFqH1uGdxlPhgNI)
 
+If you want learn how to use it I think for now Examples/learn_h4x_in_y_minutes.h4x and the other examples are the best way.
+also reading the code can help, there aren't comments but I don't think its thaaaat much code. idk it could help
+
 ```
 ~ this is a comment
 {
