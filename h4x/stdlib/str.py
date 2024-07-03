@@ -5,6 +5,9 @@ def func_upper(args, scopes):
 def func_lower(args, scopes):
 	return h4x.datatypes.String(args[0].value.lower())
 
+def func_eq(args, scopes):
+	pass
+
 def func_format(args, scopes):
 	evaled = []
 	for arg in args:

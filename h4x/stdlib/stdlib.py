@@ -2,6 +2,7 @@ from pprint import pprint
 
 import random
 import h4x
+from h4x import datatypes
 
 exports = {}
 
@@ -20,6 +21,7 @@ def func_input(args, scopes):
 	return h4x.datatypes.String(input())
 
 def func_rand(args, scopes):
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "rand")
 	return h4x.datatypes.Number(random.randint(int(args[0].value), int(args[1].value)))
 
 def func_prnt_scope(args, scopes):
@@ -28,9 +30,11 @@ def func_prnt_scope(args, scopes):
 	return null
 
 def func_error(args, scopes):
+	h4x.error.test_args(args, [datatypes.String], "error")
 	h4x.error.runtime(str(args[0]))
 
 def func_py(args, scopes):
+	h4x.error.test_args(args, [datatypes.String], "py")
 	exec(args[0].value)
 
 def func_type(args, scopes):

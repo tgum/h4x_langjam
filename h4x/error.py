@@ -1,5 +1,7 @@
-import h4x
 import sys
+import math
+
+import h4x
 
 class H4xError(Exception):
 	"""Any type of error that happened during running a h4x program"""
@@ -69,3 +71,11 @@ def runtime(message):
 
 	raise H4xError(message)
 	sys.exit()
+
+def test_arg(arg, type, func, num):
+	ordinals = "st nd rd th".split(" ")
+	if not isinstance(arg, type):
+		runtime(f"the {num+1}{ordinals[min(num, 3)]} argument to {func} should be a {type}, instead it got {repr(arg)}")
+def test_args(args, types, func):
+	for i, arg in enumerate(args):
+		test_arg(arg, types[i], func, i)

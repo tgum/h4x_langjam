@@ -137,6 +137,6 @@ def func_while(args, scopes):
 
 
 exports["if"] =     h4x.datatypes.SpecialExec(func_if)
-exports["for"] = h4x.datatypes.SpecialExec(func_for)
+exports["for"] =    h4x.datatypes.SpecialExec(func_for)
 exports["repeat"] = h4x.datatypes.SpecialExec(func_repeat)
 exports["while"] =  h4x.datatypes.SpecialExec(func_while)

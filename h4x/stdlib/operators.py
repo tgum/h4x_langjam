@@ -15,47 +15,37 @@ def func_int(args, scopes):
 
 # //---BASIC MATH---\\ #
 def func_add(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"+ needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "+")
 	return h4x.datatypes.Number(args[0].value + args[1].value)
 def func_sub(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"- needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "-")
 	return h4x.datatypes.Number(args[0].value - args[1].value)
 def func_mul(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"* needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "*")
 	return h4x.datatypes.Number(args[0].value * args[1].value)
 def func_div(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"/ needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "/")
 	return h4x.datatypes.Number(args[0].value / args[1].value)
 
 
 # //---COMARITION---\\ #
 def func_eq(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"= needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "=")
 	return h4x.datatypes.Bool(args[0].value == args[1].value)
 def func_neq(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"!= needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "!=")
 	return h4x.datatypes.Bool(args[0].value != args[1].value)
 def func_lt(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"< needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "<")
 	return h4x.datatypes.Bool(args[0].value < args[1].value)
 def func_gt(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"> needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], ">")
 	return h4x.datatypes.Bool(args[0].value > args[1].value)
 def func_lt_eq(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f"<= needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "<=")
 	return h4x.datatypes.Bool(args[0].value <= args[1].value)
 def func_gt_eq(args, scopes):
-	if not (isinstance(args[0], datatypes.Number) and isinstance(args[1], datatypes.Number)):
-		h4x.error.runtime(f">= needs 2 numbers/floats, instead it got {repr(args[0])} and {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], ">=")
 	return h4x.datatypes.Bool(args[0].value >= args[1].value)
 
 # //---BOOLEAN---\\ #
