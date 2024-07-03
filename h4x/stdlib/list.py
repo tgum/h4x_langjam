@@ -1,6 +1,7 @@
 from pprint import pprint
 
 import h4x
+from h4x import datatypes
 
 exports = {}
 def func_list(args, scopes):
@@ -10,29 +11,22 @@ def func_list(args, scopes):
 	return h4x.datatypes.H4xList(evaled)
 
 def func_len(args, scopes):
-	if not isinstance(args[0], h4x.datatypes.H4xList):
-		h4x.error.runtime(f"The first argument to #len needs to be a H4xList, instead it got {repr(args[0])}")
+	h4x.error.test_args(args, [datatypes.H4xList], "#len")
 	return h4x.datatypes.Number(args[0].len())
 def func_index(args, scopes):
-	if not isinstance(args[0], h4x.datatypes.H4xList):
-		h4x.error.runtime(f"The first argument to #nth needs to be a H4xList, instead it got {repr(args[0])}")
-	if not isinstance(args[1], h4x.datatypes.Number):
-		h4x.error.runtime(f"The second argument to #nth needs to be a number, instead it got {repr(args[1])}")
+	h4x.error.test_args(args, [datatypes.H4xList, datatypes.Number], "#nth")
 	return args[0].index(args[1].value)
 def func_push(args, scopes):
+	h4x.error.test_arg(args[0], datatypes.H4xList, "#push", 1)
 	if not isinstance(args[0], h4x.datatypes.H4xList):
 		h4x.error.runtime(f"The first argument to #push needs to be a H4xList, instead it got {repr(args[0])}")
 	return args[0].push(args[1])
 def func_pop(args, scopes):
-	if not isinstance(args[0], h4x.datatypes.H4xList):
-		h4x.error.runtime(f"The first argument to #push needs to be a H4xList, instead it got {repr(args[0])}")
+	h4x.error.test_arg(args[0], datatypes.H4xList, "#pop", 1)
 	return args[0].pop()
 def func_set(args, scopes):
-	if not isinstance(args[0], h4x.datatypes.H4xList):
-		h4x.error.runtime(f"The first argument to #set needs to be a H4xList, instead it got {repr(args[0])}")
-	if not isinstance(args[1], h4x.datatypes.Number):
-		h4x.error.runtime(f"The second argument to #set needs to be a number, instead it got {repr(args[1])}")
-	return args[0].set(args[1].value, args[2])
+	h4x.error.test_args(args[:2], [datatypes.H4xList, datatypes.Number], "#set")
+	return args[0].set(args[1].value, args[2].copy())
 
 exports["#l"] = h4x.datatypes.SpecialExec(func_list)
 

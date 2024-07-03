@@ -1,12 +1,18 @@
 import h4x
+from h4x import datatypes
 
 def func_upper(args, scopes):
+	h4x.error.test_args(args, [datatypes.String], "str:upper")
 	return h4x.datatypes.String(args[0].value.upper())
 def func_lower(args, scopes):
+	h4x.error.test_args(args, [datatypes.String], "str:lower")
 	return h4x.datatypes.String(args[0].value.lower())
+def func_str(args, scopes):
+	return h4x.datatypes.String(str(args[0]))
 
 def func_eq(args, scopes):
-	pass
+	h4x.error.test_args(args, [datatypes.String, datatypes.String], "str:eq")
+	return h4x.datatypes.Bool(args[0].value == args[1].value)
 
 def func_format(args, scopes):
 	evaled = []
@@ -41,6 +47,8 @@ def func_format(args, scopes):
 
 
 exports = {}
-exports["str:upper"] = h4x.datatypes.PyExec(func_upper, 1)
-exports["str:lower"] = h4x.datatypes.PyExec(func_lower, 1)
-exports["str:fmt"] = h4x.datatypes.SpecialExec(func_format)
+exports["str:upper"] =  h4x.datatypes.PyExec(func_upper, 1)
+exports["str:lower"] =  h4x.datatypes.PyExec(func_lower, 1)
+exports["str:eq"] =     h4x.datatypes.PyExec(func_eq, 2)
+exports["str:to_str"] = h4x.datatypes.PyExec(func_str, 1)
+exports["str:fmt"] =    h4x.datatypes.SpecialExec(func_format)

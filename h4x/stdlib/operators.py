@@ -50,16 +50,13 @@ def func_gt_eq(args, scopes):
 
 # //---BOOLEAN---\\ #
 def func_not(args, scopes):
-	if not isinstance(args[0], datatypes.Bool):
-		h4x.error.runtime(f"not needs a bool, instead it got {args[0]}")
+	h4x.error.test_args(args, [datatypes.Bool], "not")
 	return h4x.datatypes.Bool(not args[0].value)
 def func_and(args, scopes):
-	if not (isinstance(args[0], datatypes.Bool) and isinstance(args[1], datatypes.Bool)):
-		h4x.error.runtime(f"and needs 2 bool, instead it got {args[0]} and {args[1]}")
+	h4x.error.test_args(args, [datatypes.Bool, datatypes.Bool], "and")
 	return h4x.datatypes.Bool(args[0].value and args[1].value)
 def func_or(args, scopes):
-	if not (isinstance(args[0], datatypes.Bool) and isinstance(args[1], datatypes.Bool)):
-		h4x.error.runtime(f"or needs a bool, instead it got {args[0]} and {args[0]}")
+	h4x.error.test_args(args, [datatypes.Bool, datatypes.Bool], "or")
 	return h4x.datatypes.Bool(args[0].value or args[1].value)
 
 
