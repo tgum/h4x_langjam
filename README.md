@@ -2,6 +2,9 @@
 
 An easily embedable lisp like. Made for the hackclub langjam.
 
+Demo:
+[![asciicast](https://asciinema.org/a/p5jaysiSjwtFqH1uGdxlPhgNI.svg)](https://asciinema.org/a/p5jaysiSjwtFqH1uGdxlPhgNI)
+
 ```
 ~ this is a comment
 {
