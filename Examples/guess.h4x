@@ -18,4 +18,4 @@
   )
   (set tries (+ tries 1))
 )
-(print (str:fmt "good job! you guessed in % tr%" tries (if (= tries 1) "y" "ies") ))
+(print (str:fmt "good job! you found the number in % tr%" tries (if (= tries 1) "y" "ies") ))

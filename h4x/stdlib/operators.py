@@ -5,14 +5,13 @@ from h4x import datatypes
 
 exports = {}
 
-def func_float(args, scopes):
-	if not isinstance(args[0], datatypes.Number):
-		h4x.error.runtime(f"float needs a number, instead it got {args[0].type}")
+def func_num(args, scopes):
 	return h4x.datatypes.Number(args[0].value)
 def func_int(args, scopes):
-	#if not isinstance(args[0], datatypes.Number):
-	#	h4x.error.runtime(f"int needs a float, instead it got {args[0].type}")
-	return h4x.datatypes.Number(args[0].value)
+	try:
+		return h4x.datatypes.Number(int(float(args[0].value)))
+	except ValueError:
+		h4x.error.runtime(f"You can't make an int out of {repr(args[0])}")
 
 # //---BASIC MATH---\\ #
 def func_add(args, scopes):
@@ -74,8 +73,8 @@ def func_or(args, scopes):
 	return h4x.datatypes.Bool(args[0].value or args[1].value)
 
 
-exports["int"] =   h4x.datatypes.PyExec(func_int, 1)
-exports["float"] = h4x.datatypes.PyExec(func_float, 1)
+exports["num"] = h4x.datatypes.PyExec(func_num, 1)
+exports["int"] = h4x.datatypes.PyExec(func_int, 1)
 
 exports["+"] =   h4x.datatypes.PyExec(func_add, 2)
 exports["-"] =   h4x.datatypes.PyExec(func_sub, 2)

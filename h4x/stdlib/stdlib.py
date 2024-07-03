@@ -20,7 +20,7 @@ def func_input(args, scopes):
 	return h4x.datatypes.String(input())
 
 def func_rand(args, scopes):
-	return h4x.datatypes.Number(random.randint(args[0].value, args[1].value))
+	return h4x.datatypes.Number(random.randint(int(args[0].value), int(args[1].value)))
 
 def func_prnt_scope(args, scopes):
 	"""DEBUG prints the scopes"""

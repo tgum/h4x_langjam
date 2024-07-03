@@ -23,24 +23,16 @@ class Null(Value):
 		return "Null"
 	def __str__(self):
 		return "Null"
-class Float(Value):
-	def __init__(self, value):
-		self.type = "FLOAT"
-		try:
-			self.value = float(value)
-		except ValueError:
-			h4x.error.runtime(f"You can't make a float out of {repr(value)}")
-	def __str__(self):
-		return f'{self.value:g}'
 class Number(Value):
 	def __init__(self, value):
 		self.type = "INTEGER"
 		try:
 			self.value = float(value)
 		except ValueError:
-			h4x.error.runtime(f"You can't make an int out of {repr(value)}")
+			h4x.error.runtime(f"You can't make a number out of {repr(value)}")
 	def __str__(self):
 		return f'{self.value:g}'
+
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"
