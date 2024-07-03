@@ -6,6 +6,8 @@ for i, func in enumerate(functions_list):
     functions_list[i] = "\\" + func
 functions = "|".join(functions_list)
 
+delimiters = "|".join(["\\s", "\\(", "\\)"])
+
 syntax = f"""
 %YAML 1.2
 ---
@@ -27,7 +29,7 @@ contexts:
       scope: punctuation.definition.comment.h4x
       push: line_comment
 
-    - match: '({functions})'
+    - match: '(?!{delimiters})({functions})(?={delimiters})'
       scope: keyword.control.h4x
 
     - match: '\\b(-)?[0-9.]+\\b'
