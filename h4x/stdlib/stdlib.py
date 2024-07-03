@@ -1,5 +1,6 @@
 from pprint import pprint
 
+import random
 import h4x
 
 exports = {}
@@ -15,6 +16,12 @@ def func_print(args, scopes):
 		print( str(result), end=" ")
 	print()
 	return result
+def func_input(args, scopes):
+	return h4x.datatypes.String(input())
+
+def func_rand(args, scopes):
+	return h4x.datatypes.Number(random.randint(args[0].value, args[1].value))
+
 def func_prnt_scope(args, scopes):
 	"""DEBUG prints the scopes"""
 	pprint(scopes)
@@ -97,8 +104,10 @@ exports["define"] = h4x.datatypes.SpecialExec(func_define)
 exports["set"] =    h4x.datatypes.SpecialExec(func_set)
 
 exports["print"] =  h4x.datatypes.SpecialExec(func_print)
+exports["input"] =  h4x.datatypes.PyExec(func_input, 0)
+exports["rand"] =   h4x.datatypes.PyExec(func_rand, 2)
 exports["type"] =   h4x.datatypes.PyExec(func_type, 1)
-exports["error"] =   h4x.datatypes.PyExec(func_error, 1)
+exports["error"] =  h4x.datatypes.PyExec(func_error, 1)
 exports["scopes"] = h4x.datatypes.PyExec(func_prnt_scope, 0)
 
 exports["true"] =  h4x.datatypes.Bool(True)

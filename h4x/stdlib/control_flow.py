@@ -107,7 +107,7 @@ def func_repeat(args, scopes):
 	scopes[-1]["*trace"] = h4x.make_trace("repeat")
 
 	
-	for i in range(amount.value):
+	for i in range(int(amount.value)):
 		result = h4x.eval(args[1:], scopes)
 	scopes.pop()
 	return result

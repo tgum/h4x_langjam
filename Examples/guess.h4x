@@ -1,0 +1,21 @@
+(import str)
+
+(define number (+ (rand 1 100) 1))
+(define guess -1)
+(define tries 0)
+
+(print "the guessing game")
+(while (!= guess number)
+  (print "guess a number 1-100")
+  (set guess
+  	(int (input))
+  )
+  (if (< guess number)
+  	(print "too low")
+  	(if (> guess number)
+  	  (print "too high")
+  	)
+  )
+  (set tries (+ tries 1))
+)
+(print (str:fmt "good job! you guessed in % tr%" tries (if (= tries 1) "y" "ies") ))

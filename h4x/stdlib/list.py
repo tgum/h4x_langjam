@@ -15,9 +15,9 @@ def func_len(args, scopes):
 	return h4x.datatypes.Number(args[0].len())
 def func_index(args, scopes):
 	if not isinstance(args[0], h4x.datatypes.H4xList):
-		h4x.error.runtime(f"The first argument to #index needs to be a H4xList, instead it got {repr(args[0])}")
+		h4x.error.runtime(f"The first argument to #nth needs to be a H4xList, instead it got {repr(args[0])}")
 	if not isinstance(args[1], h4x.datatypes.Number):
-		h4x.error.runtime(f"The second argument to #index needs to be a number, instead it got {repr(args[0])}")
+		h4x.error.runtime(f"The second argument to #nth needs to be a number, instead it got {repr(args[1])}")
 	return args[0].index(args[1].value)
 def func_push(args, scopes):
 	if not isinstance(args[0], h4x.datatypes.H4xList):
@@ -31,7 +31,7 @@ def func_set(args, scopes):
 	if not isinstance(args[0], h4x.datatypes.H4xList):
 		h4x.error.runtime(f"The first argument to #set needs to be a H4xList, instead it got {repr(args[0])}")
 	if not isinstance(args[1], h4x.datatypes.Number):
-		h4x.error.runtime(f"The second argument to #set needs to be a number, instead it got {repr(args[0])}")
+		h4x.error.runtime(f"The second argument to #set needs to be a number, instead it got {repr(args[1])}")
 	return args[0].set(args[1].value, args[2])
 
 exports["#l"] = h4x.datatypes.SpecialExec(func_list)

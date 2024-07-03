@@ -26,13 +26,21 @@ class Null(Value):
 class Float(Value):
 	def __init__(self, value):
 		self.type = "FLOAT"
-		self.value = float(value)
+		try:
+			self.value = float(value)
+		except ValueError:
+			h4x.error.runtime(f"You can't make a float out of {repr(value)}")
 	def __str__(self):
 		return f'{self.value:g}'
-class Number(Float):
+class Number(Value):
 	def __init__(self, value):
 		self.type = "INTEGER"
-		self.value = int(value)
+		try:
+			self.value = float(value)
+		except ValueError:
+			h4x.error.runtime(f"You can't make an int out of {repr(value)}")
+	def __str__(self):
+		return f'{self.value:g}'
 class Bool(Value):
 	def __init__(self, value):
 		self.type = "BOOLEAN"
@@ -46,7 +54,7 @@ class H4xList(Value):
 	def len(self):
 		return len(self.value)
 	def index(self, i):
-		return self.value[i]
+		return self.value[int(i)]
 	def push(self, value):
 		result = self.value[:]
 		result.append(value)
@@ -56,7 +64,7 @@ class H4xList(Value):
 		return H4xList(result)
 	def set(self, index, value):
 		result = self.value[:]
-		result[index] = value
+		result[int(index)] = value
 		return H4xList(result)
 
 	def __str__(self):
@@ -77,7 +85,7 @@ class String(H4xList):
 		self.value = value
 
 	def index(self, i):
-		return String(self.value[i])
+		return String(self.value[int(i)])
 	def push(self, value):
 		result = self.value + str(value.value) # TEMPORARY STRINGIFICATION
 		return String(result)
