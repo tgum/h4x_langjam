@@ -1,3 +1,4 @@
+import copy
 from pprint import pprint
 import json
 
@@ -8,6 +9,8 @@ class BasicType:
 		self.type = "NULL"
 	def __repr__(self):
 		return self.type
+	def copy(self):
+		return copy.deepcopy(self)
 class Value(BasicType):
 	def __init__(self):
 		self.type = "VALUE"
@@ -46,17 +49,17 @@ class H4xList(Value):
 	def len(self):
 		return len(self.value)
 	def index(self, i):
-		return self.value[int(i)]
+		return self.value[int(i)].copy()
 	def push(self, value):
 		result = self.value[:]
-		result.append(value)
+		result.append(value.copy())
 		return H4xList(result)
 	def pop(self):
 		result = self.value[:-1]
 		return H4xList(result)
 	def set(self, index, value):
 		result = self.value[:]
-		result[int(index)] = value
+		result[int(index)] = value.copy()
 		return H4xList(result)
 
 	def __str__(self):

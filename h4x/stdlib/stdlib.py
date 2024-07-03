@@ -30,6 +30,9 @@ def func_prnt_scope(args, scopes):
 def func_error(args, scopes):
 	h4x.error.runtime(str(args[0]))
 
+def func_py(args, scopes):
+	exec(args[0].value)
+
 def func_type(args, scopes):
 	"""Return the type of the argument"""
 	return args[0].type
@@ -71,7 +74,7 @@ def func_define(args, scopes):
 	if not args[0].type == h4x.tokens.TokenTypes.IDENTIFIER:
 		h4x.error.runtime(f"The first parameter to define needs to be an identifier, instead it got a {args[0].type}")
 	varname = args[0].data
-	value = h4x.eval(args[1], scopes)
+	value = h4x.eval(args[1], scopes).copy()
 	scopes[-1][varname] = value
 	#return value
 	return null
@@ -83,7 +86,7 @@ def func_set(args, scopes):
 	if not args[0].type == h4x.tokens.TokenTypes.IDENTIFIER:
 		h4x.error.runtime(f"The first parameter to set needs to be an identifier, instead it got a {args[0].type}")
 	varname = args[0].data
-	value = h4x.eval(args[1], scopes)
+	value = h4x.eval(args[1], scopes).copy()
 	found_var = False
 	for scope in reversed(scopes):
 		if varname in scope:
@@ -106,6 +109,7 @@ exports["set"] =    h4x.datatypes.SpecialExec(func_set)
 exports["print"] =  h4x.datatypes.SpecialExec(func_print)
 exports["input"] =  h4x.datatypes.PyExec(func_input, 0)
 exports["rand"] =   h4x.datatypes.PyExec(func_rand, 2)
+exports["py"] =   h4x.datatypes.PyExec(func_py, 1)
 exports["type"] =   h4x.datatypes.PyExec(func_type, 1)
 exports["error"] =  h4x.datatypes.PyExec(func_error, 1)
 exports["scopes"] = h4x.datatypes.PyExec(func_prnt_scope, 0)

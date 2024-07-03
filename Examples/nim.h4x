@@ -1,0 +1,6 @@
+(define NUM_HEAPS 3)
+(define heaps (#l))
+(for i (NUM_HEAPS)
+  (set heaps (#push heaps (+ i 1 )))
+)
+(print heaps)
