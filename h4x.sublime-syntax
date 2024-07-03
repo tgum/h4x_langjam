@@ -18,7 +18,7 @@ contexts:
       scope: punctuation.definition.comment.h4x
       push: line_comment
 
-    - match: '(?!\s|\(|\))(repeat|scopes|define|import|while|false|error|input|print|#push|null|true|type|rand|#set|#pop|#nth|#len|for|and|not|int|num|set|if|or|>=|<=|!=|==|fn|do|#l|>|<|=|/|\*|-|\+)(?=\s|\(|\))'
+    - match: '(?!\s|\(|\))(repeat|scopes|define|import|while|false|error|input|print|#push|null|true|type|rand|#set|#pop|#nth|#len|for|and|not|mod|int|num|set|if|or|>=|<=|!=|==|py|fn|do|#l|>|<|=|/|\*|-|\+)(?=\s|\(|\))'
       scope: keyword.control.h4x
 
     - match: '\b(-)?[0-9.]+\b'

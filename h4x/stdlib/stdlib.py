@@ -18,7 +18,10 @@ def func_print(args, scopes):
 	print()
 	return result
 def func_input(args, scopes):
-	return h4x.datatypes.String(input())
+	try:
+		return h4x.datatypes.String(input())
+	except KeyboardInterrupt:
+		h4x.error.runtime("The user canceled")
 
 def func_rand(args, scopes):
 	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "rand")

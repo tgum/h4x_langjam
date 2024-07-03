@@ -27,6 +27,9 @@ def func_div(args, scopes):
 	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "/")
 	return h4x.datatypes.Number(args[0].value / args[1].value)
 
+def func_mod(args, scopes):
+	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "mod")
+	return h4x.datatypes.Number(args[0].value % args[1].value)
 
 # //---COMARITION---\\ #
 def func_eq(args, scopes):
@@ -67,6 +70,8 @@ exports["+"] =   h4x.datatypes.PyExec(func_add, 2)
 exports["-"] =   h4x.datatypes.PyExec(func_sub, 2)
 exports["*"] =   h4x.datatypes.PyExec(func_mul, 2)
 exports["/"] =   h4x.datatypes.PyExec(func_div, 2)
+
+exports["mod"] =   h4x.datatypes.PyExec(func_mod, 2)
 
 exports["=="] =  h4x.datatypes.PyExec(func_eq, 2)
 exports["="] =   h4x.datatypes.PyExec(func_eq, 2)
