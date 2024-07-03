@@ -21,25 +21,26 @@
 )
 
 (while (not (is_over heaps))
+  (print (str:fmt "player #% turn" (+ current_player 1) ))
   (for i (NUM_HEAPS)
     (print
       (str:fmt "heap #% contains % element(s)" (+ i 1) (#nth heaps i))
     )
   )
-  (print (str:fmt "player #% turn" (+ current_player 1) ))
   (print "Which pile?")
-  (define pile (- (int (input)) 1 ))
+  (define pile (- (int_input) 1 ))
   (if (or (< pile 0) (>= pile NUM_HEAPS))
     (print (str:fmt "It has to be between 1 and %" NUM_HEAPS))
     ~ else
     (do
       (print "How many do you take out?")
-      (define amount (int (input)) )
+      (define amount (int_input) )
       (define num_in_heap (#nth heaps pile))
       (if (< num_in_heap amount)
         (print 
           (str:fmt "You can't take out % out of %" amount num_in_heap)
         )
+        ~ else
         (do
           (set heaps
             (#set heaps pile (- num_in_heap amount))
@@ -49,5 +50,6 @@
       )
     )
   )
+  (print)
 )
 (print (str:fmt "player % loses" (+ 1 current_player) ))

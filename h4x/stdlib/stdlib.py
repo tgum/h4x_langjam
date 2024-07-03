@@ -1,4 +1,5 @@
 from pprint import pprint
+import readline
 
 import random
 import h4x
@@ -22,6 +23,14 @@ def func_input(args, scopes):
 		return h4x.datatypes.String(input())
 	except KeyboardInterrupt:
 		h4x.error.runtime("The user canceled")
+def func_int_input(args, scopes):
+	result = None
+	while result == None:
+		try:
+			result = int(input())
+		except ValueError:
+			pass
+	return h4x.datatypes.Number(result)
 
 def func_rand(args, scopes):
 	h4x.error.test_args(args, [datatypes.Number, datatypes.Number], "rand")
@@ -115,6 +124,7 @@ exports["set"] =    h4x.datatypes.SpecialExec(func_set)
 
 exports["print"] =  h4x.datatypes.SpecialExec(func_print)
 exports["input"] =  h4x.datatypes.PyExec(func_input, 0)
+exports["int_input"] =  h4x.datatypes.PyExec(func_int_input, 0)
 exports["rand"] =   h4x.datatypes.PyExec(func_rand, 2)
 exports["py"] =   h4x.datatypes.PyExec(func_py, 1)
 exports["type"] =   h4x.datatypes.PyExec(func_type, 1)
