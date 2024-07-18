@@ -1,4 +1,3 @@
-from pprint import pprint
 import sys
 
 import h4x
@@ -12,11 +11,10 @@ with open(filename, "r") as f:
 
 
 scopes = h4x.create_scopes()
-h4x.import_module(scopes[0], "h4x.stdlib")
+h4x.import_stdlib(scopes)
 
 try:
 	parsed = h4x.parse(program)
 	evaled = h4x.eval(parsed, scopes)
 except h4x.error.H4xError:
 	pass
-#print(evaled)

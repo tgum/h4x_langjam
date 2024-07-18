@@ -7,7 +7,7 @@ import h4x
 h4x.DEBUG = False
 
 scopes = h4x.create_scopes()
-h4x.import_module(scopes[0], "h4x.stdlib")
+h4x.import_stdlib(scopes)
 
 def func_exit(args, scopes):
 	print("Goodbye!")

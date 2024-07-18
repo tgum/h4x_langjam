@@ -67,7 +67,10 @@ def func_import(args, scopes):
 		h4x.error.runtime(f"import needs 1 argument, instead it got {len(args)}")
 	if not args[0].type == h4x.tokens.TokenTypes.IDENTIFIER:
 		h4x.error.runtime(f"The first argument to import needs to be an identifier, instead it got {args[0]}")
-	h4x.import_module(scopes[-1], args[0].data, args[0].data + ":")
+	try:
+		h4x.import_module(scopes[-1], args[0].data)
+	except ImportError as e:
+		h4x.error.runtime(str(e))
 	return h4x.datatypes.String(args[0].data)
 
 def func_fn(args, scopes):

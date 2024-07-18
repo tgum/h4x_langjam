@@ -2,6 +2,8 @@ __all__ = ["tokens", "lexer", "parser", "datatypes", "runner"]
 
 import importlib
 
+import sys
+
 from . import error
 from . import tokens
 from . import lexer
@@ -20,21 +22,37 @@ tokenize = lexer.tokenize
 tokens_to_tree = parser.parse
 eval = runner.eval
 
-PATH = ["", "h4x.stdlib."]
+PATH = ["h4x.stdlib."]
 
-def import_module(scope, name, prefix=""):
-	path = None
-	for path in PATH:
-		spec = importlib.util.find_spec(path+name, path)
-		if spec:
+def import_module(scope, name):
+	path_save = sys.path
+	#sys.path = PATH
+
+	found = False
+	for path in reversed(PATH):
+		try:
+			print(f"tring to find {path+name}")
+			module = importlib.import_module(path+name, ".")
+			for key in module.exports.keys():
+				scope[key] = module.exports[key]
+
+			print(f"found in {path}")
+			found = True
 			break
-	if path != None:
-		module = importlib.import_module(path + name)
+		except ModuleNotFoundError:
+			pass
+
+	if not found:
+		raise ImportError(f"Couldn't find module \"{name}\" in path {PATH}")
+	
+	sys.path = path_save
+	return scope
+	
+	#spec = importlib.util.find_spec(f"{name}", None if path == "" else path)
+def import_stdlib(scopes):
+		module = importlib.import_module("h4x.stdlib")
 		for key in module.exports.keys():
-			scope[key] = module.exports[key]
-		return scope
-	else:
-		error.runtime(f"Couldn't find module {name} in path {path}")
+			scopes[0][key] = module.exports[key]
 
 def make_trace(scope):
 	return {"scope": scope, "token": DEBUG_last_token}

@@ -15,9 +15,11 @@ scopes = h4x.create_scopes()
 
 Import the standard library with the basic functions (`if`, `+`, `define`).
 If you want you can use your own if you want to limit access to certain functions.
-the h4x.import_module function takes a scope (dictionary) and imports the second argument into it.
+the h4x.import_module function takes a list scopes (dictionaries) and imports the second argument into it. `
+h4x.import_module(scopes[0], "my.modules")`
+TODO i need to update this with the new module import system
 ```python
-h4x.import_module(scopes[0], "h4x.stdlib")
+h4x.import_stdlib(scopes)
 ```
 
 Then you parse whatever program you want to run. (technically it does the tokenizing and the parsing see [parsing](#parsing))
